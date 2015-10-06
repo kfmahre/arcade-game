@@ -7,8 +7,8 @@ var Enemy = function(x , y, speed) {
     var randomLane = function() {var lane = [60, 143, 226];
     return lane[Math.floor(Math.random() * 3)];}; **/
     this.y = y;
-    this.width = 101;
-    this.height = 74;
+    this.width = 80;
+    this.height = 70;
     // This sets the speed of the enemies
     this.speed = Math.floor((Math.random() * 300) + 100);
     // The image/sprite for our enemies, this uses
@@ -55,7 +55,7 @@ var Player = function(x , y) {
     this.x = 202;
     this.y = 400;
     this.width = 70;
-    this.height = 80;
+    this.height = 70;
     this.sprite = 'images/char-boy.png';
 };
 
@@ -108,7 +108,8 @@ Player.prototype.reset = function(x, y) {
 Player.prototype.victory = function() {
     if (this.y <= 60) {
         alert("victory!");
-    }
+        player.reset();
+    };
 };
 
 // Now instantiate your objects.
