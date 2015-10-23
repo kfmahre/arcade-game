@@ -1,11 +1,13 @@
 // Enemies our player must avoid
 var Enemy = function(x , y, speed) {
     this.x = x;
-    /** This is a currently unused function sets the y axis
-    location for the three lanes and randomly picks one.
+    /**----------------------------------------------------------------
+    This is a currently unused function sets the y axis
+    location for three lanes and randomly picks one.
 
     var randomLane = function() {var lane = [60, 143, 226];
-    return lane[Math.floor(Math.random() * 3)];}; **/
+    return lane[Math.floor(Math.random() * 3)];};
+    --------------------------------------------------------------- **/
     this.y = y;
     this.width = 80;
     this.height = 70;
@@ -24,7 +26,7 @@ Enemy.prototype.update = function(dt) {
     // all computers.
     this.x += this.speed * dt;
     // This resets the enemy position after it moves off the screen
-    if (this.x > 555.5) {
+    if (this.x > 757) {
         this.x = -101;
     }
     // This calls the collision detection function
@@ -47,20 +49,23 @@ Enemy.prototype.collision = function() {
     }
 };
 
-// Now write your own player class
-// This class requires an update(), render() and
-// a handleInput() method.
+/** Player Class ----------------------------------------------------------
+ This class has an update(), render() and
+ a handleInput() method.
+----------------------------------------------------------------------- **/
 
 var Player = function(x , y) {
-    this.x = 202;
-    this.y = 400;
+    this.x = x;
+    this.y = y;
     this.width = 70;
     this.height = 70;
     this.sprite = 'images/char-boy.png';
 };
 
-// I've made is so this function checks
-// for victory conditions
+/** --------------------------------------
+I've made is so the player update function
+ checks for victory conditions
+-------------------------------------- **/
 Player.prototype.update = function(dt) {
     this.dt = dt;
     this.victory();
@@ -71,18 +76,24 @@ Player.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
-/** Player hendleInput() method
+/** --------------------------------------------------------------------
+Player hendleInput() method
 This moves the player around the blocks on the screen,
-but doesn't let them move off the blocks. **/
+but doesn't let them move off the blocks.
+Also, it calls the move function, which sets the location
+of the player before the move in case they hit an
+obstacle.
+-------------------------------------------------------------------- **/
 
 Player.prototype.handleInput = function(allowedKeys) {
+    move();
     switch (allowedKeys) {
         case 'left':
         if (this.x > 50) { this.x -= 101;
             }
         break;
         case 'right':
-            if (this.x < 404) { this.x += 101;
+            if (this.x < 606) { this.x += 101;
             }
         break;
         case 'up':
@@ -90,18 +101,28 @@ Player.prototype.handleInput = function(allowedKeys) {
             }
         break;
         case 'down':
-            if (this.y < 400) { this.y += 83;
+            if (this.y < 483) { this.y += 83;
             }
         break;
     }
 };
 
+// This function, called by handleInput,
+function move() {
+    backX = player.x;
+    backY = player.y;
+};
+
 // Used by Enemy.prototype.collision
 // This moves the player back to starting position
 Player.prototype.reset = function(x, y) {
-    player.x = 202;
-    player.y = 400;
+    player.x = 303;
+    player.y = 483;
 };
+
+// This array stores the previous location of the player
+var backX = [];
+var backY = [];
 
 // When the player reaches the water
 // Victory is achieved!
@@ -112,30 +133,78 @@ Player.prototype.victory = function() {
     };
 };
 
+// Called by rock.collision function, this
+// moves the player back to where they
+// just were. In appearance and practice
+// it makes obstacles force the player
+// to a halt.
+Player.prototype.halt = function() {
+    this.x = backX;
+    this.y = backY;
+};
+
+// Creating Rock class / Obstacle class --------------------------
+var Rock = function (x, y) {
+    this.x = x;
+    this.y = y;
+    this.width = 80;
+    this.height = 80;
+    this.sprite = 'images/rock.png';
+};
+
+// This checks to see if the player collides with
+// the obstacle.
+Rock.prototype.update = function(dt) {
+    this.dt = dt;
+    this.collision();
+};
+
+Rock.prototype.render = function() {
+    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+};
+
+// If the player collides with the rock/obstacle,
+// the player.halt function is called.
+Rock.prototype.collision = function() {
+    if (this.x < player.x + player.width &&
+        this.x + this.width > player.x &&
+        this.y < player.y + player.height &&
+        this.height + this.y > player.y) {
+        player.halt();
+    }
+};
+
+
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 
 var allEnemies = [enemy1 = new Enemy(-101, 60),
     enemy2 = new Enemy(-101, 143),
-    enemy3 = new Enemy(-101, 226)];
+    enemy3 = new Enemy(-101, 226),
+    enemy4 = new Enemy(-101, 309)];
 
-/** This currently unused extra array was something I was experimenting on
+/** -----------------------------------experimental
+This currently unused extra array was something I was experimenting on
 to see if I could find a way to change the enemy speed during the game
 
 var altEnemies = [enemy1 = new Enemy(-101, 60),
     enemy2 = new Enemy(-101, 143),
-    enemy3 = new Enemy(-101, 226)]; **/
+    enemy3 = new Enemy(-101, 226)]; ---------------------------------- **/
 
-/** This is an alternate way to create enemies if the allEnemies array is left empty,
+/**-------------------currently unused method-----------------------
+This is an alternate way to create enemies if the allEnemies array is left empty,
 but then the bugs can end up in the same lanes
 
 for (var i = 0; i<=2; i++) {
     var createEnemy = new Enemy();
     allEnemies.push(createEnemy);
-    } **/
+    }
+------------------------------------------------------------- **/
 
 // Place the player object in a variable called player
-var player = new Player(202, 400);
+var player = new Player(303, 483);
+
+var allRocks = [rock2 = new Rock (101, 390), rock1 = new Rock (101, 467)];
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
