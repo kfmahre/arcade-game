@@ -2,11 +2,11 @@
 var Enemy = function(x , y, speed) {
     this.x = x;
     /**----------------------------------------------------------------
-    This is a currently unused function sets the y axis
-    location for three lanes and randomly picks one.
+     This is a currently unused function sets the y axis
+     location for three lanes and randomly picks one.
 
-    var randomLane = function() {var lane = [60, 143, 226];
-    return lane[Math.floor(Math.random() * 3)];};
+     var randomLane = function() {var lane = [60, 143, 226];
+     return lane[Math.floor(Math.random() * 3)];};
     --------------------------------------------------------------- **/
     this.y = y;
     this.width = 80;
@@ -31,7 +31,7 @@ Enemy.prototype.update = function(dt) {
     this.collision();
 };
 
-// Draw the enemy on the screen, required method for game
+// Draws the enemy on the screen, required method for game
 Enemy.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
@@ -62,7 +62,7 @@ var Player = function(x , y) {
 };
 
 /** ------------------------------------------------
-I've made is so the player update function
+ I've made it so the player update function
  calls a function that checks for victory conditions
 ------------------------------------------------ **/
 Player.prototype.update = function(dt) {
@@ -76,12 +76,12 @@ Player.prototype.render = function() {
 };
 
 /** --------------------------------------------------------------------
-Player hendleInput() method
-This moves the player around the blocks on the screen,
-but doesn't let them move off the blocks.
-Also, it calls the move function, which sets the location
-of the player before the move in case they hit an
-obstacle.
+ Player hendleInput() method
+ This moves the player around the blocks on the screen,
+ but doesn't let them move off the blocks.
+ Also, it calls the move function, which sets the location
+ of the player before the move in case they hit an
+ obstacle.
 -------------------------------------------------------------------- **/
 
 Player.prototype.handleInput = function(allowedKeys) {
