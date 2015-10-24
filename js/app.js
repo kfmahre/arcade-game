@@ -1,4 +1,4 @@
-// Enemies our player must avoid
+// Enemy constructor --------------------------------------------------
 var Enemy = function(x , y, speed) {
     this.x = x;
     /**----------------------------------------------------------------
@@ -13,12 +13,10 @@ var Enemy = function(x , y, speed) {
     this.height = 70;
     // This sets the speed of the enemies
     this.speed = Math.floor((Math.random() * 300) + 100);
-    // The image/sprite for our enemies, this uses
-    // a helper we've provided to easily load images
     this.sprite = 'images/enemy-bug.png';
 };
 
-// Update the enemy's position, required method for game
+// This updates the enemy's position, and checks for player collisions
 // Parameter: dt, a time delta between ticks
 Enemy.prototype.update = function(dt) {
     // You should multiply any movement by the dt parameter
@@ -29,7 +27,7 @@ Enemy.prototype.update = function(dt) {
     if (this.x > 757) {
         this.x = -101;
     }
-    // This calls the collision detection function
+    // This calls the enemy collision detection function
     this.collision();
 };
 
@@ -45,15 +43,16 @@ Enemy.prototype.collision = function() {
         this.y < player.y + player.height &&
         this.height + this.y > player.y) {
         player.reset(); // resets the player on collision
-        alert("collision!"); // collision detected!
     }
 };
 
 /** Player Class ----------------------------------------------------------
  This class has an update(), render() and
- a handleInput() method.
+ a handleInput() method. Also; move(), reset(), victory(), and halt()
+ functions have been added to improve gameplay.
 ----------------------------------------------------------------------- **/
 
+// Simple constructor class to set the basic attributes of a player
 var Player = function(x , y) {
     this.x = x;
     this.y = y;
@@ -62,10 +61,10 @@ var Player = function(x , y) {
     this.sprite = 'images/char-boy.png';
 };
 
-/** --------------------------------------
+/** ------------------------------------------------
 I've made is so the player update function
- checks for victory conditions
--------------------------------------- **/
+ calls a function that checks for victory conditions
+------------------------------------------------ **/
 Player.prototype.update = function(dt) {
     this.dt = dt;
     this.victory();
@@ -107,7 +106,9 @@ Player.prototype.handleInput = function(allowedKeys) {
     }
 };
 
-// This function, called by handleInput,
+// This function, called by handleInput, changes
+// backX and backY to the value of the player's
+// position before they are moved
 function move() {
     backX = player.x;
     backY = player.y;
@@ -133,17 +134,19 @@ Player.prototype.victory = function() {
     };
 };
 
-// Called by rock.collision function, this
-// moves the player back to where they
-// just were. In appearance and practice
-// it makes obstacles force the player
-// to a halt.
+/** ------------------------------------
+ Called by rock.collision function, this
+ moves the player back to where they
+ just were. In appearance and practice
+ it makes obstacles force the player
+ to a halt.
+------------------------------------ **/
 Player.prototype.halt = function() {
     this.x = backX;
     this.y = backY;
 };
 
-// Creating Rock class / Obstacle class --------------------------
+// Creating Rock class / Obstacle constructor class --------------------------
 var Rock = function (x, y) {
     this.x = x;
     this.y = y;
@@ -183,23 +186,24 @@ var allEnemies = [enemy1 = new Enemy(-101, 60),
     enemy3 = new Enemy(-101, 226),
     enemy4 = new Enemy(-101, 309)];
 
-/** -----------------------------------experimental
-This currently unused extra array was something I was experimenting on
-to see if I could find a way to change the enemy speed during the game
+/** ----------------------------- Experimental --------------------------------
+    This currently unused array was something I was using to experiment with
+    to see if I could find a way to change the enemy speed during the game
 
-var altEnemies = [enemy1 = new Enemy(-101, 60),
-    enemy2 = new Enemy(-101, 143),
-    enemy3 = new Enemy(-101, 226)]; ---------------------------------- **/
+    var altEnemies = [enemy1 = new Enemy(-101, 60),
+        enemy2 = new Enemy(-101, 143),
+        enemy3 = new Enemy(-101, 226)];
+--------------------------------------------------------------------------- **/
 
-/**-------------------currently unused method-----------------------
-This is an alternate way to create enemies if the allEnemies array is left empty,
-but then the bugs can end up in the same lanes
+/** ------------------ Alternate, currently unused method ------------------
+    This is an alternate way I was using to create enemies if the allEnemies
+    array is left empty, but then the bugs can end up in the same lanes.
 
-for (var i = 0; i<=2; i++) {
-    var createEnemy = new Enemy();
-    allEnemies.push(createEnemy);
-    }
-------------------------------------------------------------- **/
+    for (var i = 0; i<=2; i++) {
+        var createEnemy = new Enemy();
+        allEnemies.push(createEnemy);
+        }
+------------------------------------------------------------------------ **/
 
 // Place the player object in a variable called player
 var player = new Player(303, 483);
