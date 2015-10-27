@@ -177,6 +177,42 @@ Rock.prototype.collision = function() {
     }
 };
 
+/** Gem constructor -------------------------------------------------------
+Every gem will spawn on top of one of the stone tiles. Eventually I want
+to make it so the player has to gather a certain number of gems before they
+can cross to victory, or maybe eventually another level
+----------------------------------------------------------------------- **/
+var Gem = function (x, y) {
+    this.x = (Math.round(Math.random() * (6 - 0)) + 0) * 101;
+    this.y = (((Math.round(Math.random() * (3 - 0)) + 0) * 83) + 60);
+    this.width = 80;
+    this.height = 80;
+    this.sprite = 'images/GemBlue.png';
+};
+
+// This checks to see if the player collides with
+// a gem.
+Gem.prototype.update = function(dt) {
+    this.dt = dt;
+    this.collision();
+};
+
+Gem.prototype.render = function() {
+    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+};
+
+// If the player collides with the Gem,
+// the Gem disappears and another one spawns.
+// Todo: add score of gems condition before crossing to victory
+Gem.prototype.collision = function() {
+    if (this.x < player.x + player.width &&
+        this.x + this.width > player.x &&
+        this.y < player.y + player.height &&
+        this.height + this.y > player.y) {
+        allGems.pop(this);
+        allGems.push(new Gem(i))
+    }
+};
 
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
@@ -186,29 +222,17 @@ var allEnemies = [enemy1 = new Enemy(-101, 60),
     enemy3 = new Enemy(-101, 226),
     enemy4 = new Enemy(-101, 309)];
 
-/** ----------------------------- Experimental --------------------------------
-    This currently unused array was something I was using to experiment with
-    to see if I could find a way to change the enemy speed during the game
-
-    var altEnemies = [enemy1 = new Enemy(-101, 60),
-        enemy2 = new Enemy(-101, 143),
-        enemy3 = new Enemy(-101, 226)];
---------------------------------------------------------------------------- **/
-
-/** ------------------ Alternate, currently unused method ------------------
-    This is an alternate way I was using to create enemies if the allEnemies
-    array is left empty, but then the bugs can end up in the same lanes.
-
-    for (var i = 0; i<=2; i++) {
-        var createEnemy = new Enemy();
-        allEnemies.push(createEnemy);
-        }
------------------------------------------------------------------------- **/
-
 // Place the player object in a variable called player
 var player = new Player(303, 483);
 
 var allRocks = [rock2 = new Rock (101, 390), rock1 = new Rock (101, 467)];
+
+// Array for gems
+var allGems = [];
+
+for (var i = 0; i < 1; i++) {
+    allGems.push(new Gem(i));
+};
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
