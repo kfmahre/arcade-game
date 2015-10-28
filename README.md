@@ -1,12 +1,45 @@
-frontend-nanodegree-arcade-game
-===============================
+Kyle Mahre's frontend-nanodegree-arcade-game
+============================================
 
-Students should use this rubric: https://www.udacity.com/course/viewer#!/c-ud015/l-3072058665/m-3072588797
+Original Source of basic game engine and sprites comes from Udacity at: https://github.com/udacity/frontend-nanodegree-arcade-game
 
-for self-checking their submission.
+Github repository of this version of the project: https://github.com/kfmahre/frontend-nanodegree-arcade-game
 
-This game should run as long as all the files in it's repository are downloaded and then it's index.html file are loaded in chrome.
+It is most likely if you are reading this you are already at my above github repository. Clone this project on your computer to download all the files needed to play this game.
 
-The object of the game is to win by moving the player from the bottom of the game board, in the grass, to the top of the game board, at the water. Move using your keyboard's arrow keys. You must avoid the bugs moving accross the screen, or you will be placed back at the starting position.
+Features
+--------
 
-Have fun!
+- This game is a frogger clone developed by Kyle Mahre for his Udacity nanodegree program.
+
+- The object of the game is to win by moving the player from the bottom of the game board at it's starting position, to the top of the game board, at the water.
+
+- Players move by using the keyboard's arrow keys.
+
+- You must avoid the bugs moving accross the screen, or you will be placed back at the starting position.
+
+- Rocks are an obstacle
+
+- Gems will spawn one at a time and will vanish when the player lands on their tile. As of the writing of this documentation, collecting gems gets the player nowhere. All that is required for victory is to cross the stone tiles without being struck by a bug.
+
+Installation
+------------
+
+- Once all the project's files have been downloaded from the repository, all one has to do to play the game is to open the project's index.html file.
+
+- As of the writing of this readme, the only broswer known to play the game is chrome; however, I am confident that it should function on all browsers, and anyone who wants to try it on a different browser is encouraged to do so.
+
+Contribute
+----------
+
+- Feel free to fork my project.
+
+Support
+-------
+
+- Please let me know if you experience any issues.
+
+License
+-------
+
+-This project is licensed under the BSD license, it's freeware. Please feel free to play this game as much as you want for free. Also, if anyone wants to use the code I have in this project for their own game, you have my permission, but please cite me.

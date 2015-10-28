@@ -1,7 +1,7 @@
 // Enemy constructor --------------------------------------------------
 var Enemy = function(x , y, speed) {
     this.x = x;
-    /**----------------------------------------------------------------
+    /** ---------------------------------------------------------------
      This is a currently unused function sets the y axis
      location for three lanes and randomly picks one.
 
@@ -85,7 +85,7 @@ Player.prototype.render = function() {
 -------------------------------------------------------------------- **/
 
 Player.prototype.handleInput = function(allowedKeys) {
-    move();
+    this.move();
     switch (allowedKeys) {
         case 'left':
         if (this.x > 50) { this.x -= 101;
@@ -109,7 +109,7 @@ Player.prototype.handleInput = function(allowedKeys) {
 // This function, called by handleInput, changes
 // backX and backY to the value of the player's
 // position before they are moved
-function move() {
+Player.prototype.move = function() {
     backX = player.x;
     backY = player.y;
 };
@@ -131,7 +131,7 @@ Player.prototype.victory = function() {
     if (this.y <= 60) {
         alert("victory!");
         player.reset();
-    };
+    }
 };
 
 /** ------------------------------------
@@ -203,14 +203,14 @@ Gem.prototype.render = function() {
 
 // If the player collides with the Gem,
 // the Gem disappears and another one spawns.
-// Todo: add score of gems condition before crossing to victory
+// TODO: add score of gems condition before crossing to victory
 Gem.prototype.collision = function() {
     if (this.x < player.x + player.width &&
         this.x + this.width > player.x &&
         this.y < player.y + player.height &&
         this.height + this.y > player.y) {
         allGems.pop(this);
-        allGems.push(new Gem(i))
+        allGems.push(new Gem(i));
     }
 };
 
@@ -232,7 +232,7 @@ var allGems = [];
 
 for (var i = 0; i < 1; i++) {
     allGems.push(new Gem(i));
-};
+}
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
