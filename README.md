@@ -42,4 +42,4 @@ Support
 License
 -------
 
--This project is licensed under the BSD license, it's freeware. Please feel free to play this game as much as you want for free. Also, if anyone wants to use the code I have in this project for their own game, you have my permission, but please cite me.
+- This project is licensed under the BSD license, it's freeware. Please feel free to play this game as much as you want for free. Also, if anyone wants to use the code I have in this project for their own game, you have my permission, but please cite me.

@@ -110,15 +110,15 @@ Player.prototype.handleInput = function(allowedKeys) {
 // backX and backY to the value of the player's
 // position before they are moved
 Player.prototype.move = function() {
-    backX = player.x;
-    backY = player.y;
+    backX = this.x;
+    backY = this.y;
 };
 
 // Used by Enemy.prototype.collision
 // This moves the player back to starting position
 Player.prototype.reset = function(x, y) {
-    player.x = 303;
-    player.y = 483;
+    this.x = 303;
+    this.y = 483;
 };
 
 // This array stores the previous location of the player
@@ -130,7 +130,7 @@ var backY = [];
 Player.prototype.victory = function() {
     if (this.y <= 60) {
         alert("victory!");
-        player.reset();
+        this.reset();
     }
 };
 
