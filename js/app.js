@@ -152,7 +152,7 @@ var Rock = function (x, y) {
     this.y = y;
     this.width = 80;
     this.height = 80;
-    this.sprite = 'images/rock.png';
+    this.sprite = 'images/Rock.png';
 };
 
 // This checks to see if the player collides with
