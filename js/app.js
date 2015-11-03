@@ -217,15 +217,16 @@ Gem.prototype.collision = function() {
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 
-var allEnemies = [enemy1 = new Enemy(-101, 60),
-    enemy2 = new Enemy(-101, 143),
-    enemy3 = new Enemy(-101, 226),
-    enemy4 = new Enemy(-101, 309)];
+var allEnemies = [new Enemy(-101, 60),
+        new Enemy(-101, 143),
+        new Enemy(-101, 226),
+        new Enemy(-101, 309)];
 
 // Place the player object in a variable called player
 var player = new Player(303, 483);
 
-var allRocks = [rock2 = new Rock (101, 390), rock1 = new Rock (101, 467)];
+var allRocks = [new Rock (101, 390),
+            new Rock (101, 467)];
 
 // Array for gems
 var allGems = [];
