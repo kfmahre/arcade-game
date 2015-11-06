@@ -203,7 +203,7 @@ var Engine = (function(global) {
         'images/vault-boy.png',
         'images/vault-girl.png',
         'images/101.png',
-        'images/rock.png',
+        'images/Rock.png',
         'images/GemBlue.png',
         'images/Stone Block Tall.png'
     ]);
