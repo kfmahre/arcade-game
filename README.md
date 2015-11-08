@@ -1,6 +1,8 @@
 Kyle Mahre's frontend-nanodegree-arcade-game
 ============================================
 
+Click this link to direct your browser to play the game: http://kfmahre.github.io/frontend-nanodegree-arcade-game/
+
 Original Source of basic game engine and sprites comes from Udacity at: https://github.com/udacity/frontend-nanodegree-arcade-game
 
 Github repository of this version of the project: https://github.com/kfmahre/frontend-nanodegree-arcade-game
@@ -25,7 +27,7 @@ Features
 Installation
 ------------
 
-- Once all the project's files have been downloaded from the repository, all one has to do to play the game is to open the project's index.html file.
+- Once all the project's files have been downloaded from the repository, all one has to do to play the game is to open the project's index.html file. It is also available to play in your browser without downloading anything here: http://kfmahre.github.io/frontend-nanodegree-arcade-game/
 
 - As of the writing of this readme, the only broswer known to play the game is chrome; however, I am confident that it should function on all browsers, and anyone who wants to try it on a different browser is encouraged to do so.
 
