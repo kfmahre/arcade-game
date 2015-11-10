@@ -1,7 +1,7 @@
 Kyle Mahre's frontend-nanodegree-arcade-game
 ============================================
 
-Click this link to direct your browser to play the game: http://kfmahre.github.io/frontend-nanodegree-arcade-game/
+Click this link to direct your browser to play the game: http://kfmahre.github.io/arcade-game/
 
 Original Source of basic game engine and sprites comes from Udacity at: https://github.com/udacity/frontend-nanodegree-arcade-game
 
